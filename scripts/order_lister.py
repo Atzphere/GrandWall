@@ -1,4 +1,6 @@
 import csv
+import os
+
 filename = "../data/Sorting Copy of Summer 2023 GrandWall Order Form Spreadsheet - Form responses 1.csv"
 
 with open(filename, "r") as f:
@@ -16,6 +18,7 @@ fug = '''What is your VOC Membership ID? To find this you have to login to your 
 
 
 for num, order in enumerate(orders):
+    os.system("cls")
     print("==== {}'s Order (#{})' ====".format(order["Name:"], num))
     email = order["Email address"]
     membership_id = order[fug]
