@@ -25,7 +25,7 @@ for num, order in enumerate(orders):
         order.items())
     for item, amount in ordered_items:
         print("{}: (x{})".format(item, amount))
-    print("Email: {}\n"
+    print("Email: {}\n".format(email)
           + "VOCID: https://www.ubc-voc.com/members/show_extended?target_id={}"
-          .format(email, membership_id))
+          .format(membership_id))
     input("Press Enter to continue...")
