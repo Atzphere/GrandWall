@@ -1,7 +1,12 @@
 import csv
 import os
+from termcolor import colored
+import keyboard
 
 filename = "../data/Sorting Copy of Summer 2023 GrandWall Order Form Spreadsheet - Form responses 1.csv"
+
+colors = ("green", "yellow", "red", "blue", "magenta",
+          "cyan", "white", "light_blue")
 
 with open(filename, "r") as f:
     orders = list(csv.DictReader(f))
@@ -19,7 +24,7 @@ fug = '''What is your VOC Membership ID? To find this you have to login to your 
 
 for num, order in enumerate(orders):
     os.system("cls")
-    print("==== {}'s Order (#{})' ====".format(order["Name:"], num))
+    print("==== (#{}) {}'s Order' ====".format(num, order["Name:"]))
     email = order["Email address"]
     membership_id = order[fug]
     del order[fug]
@@ -27,8 +32,10 @@ for num, order in enumerate(orders):
         lambda item: True if item[1] != "" and item[1].isnumeric() else False,
         order.items())
     for item, amount in ordered_items:
-        print("{}: (x{})".format(item, amount))
-    print("Email: {}\n".format(email)
+        print(("{}:" + colored(" (x{})", colors[(int(amount) - 1) % len(colors)]))
+              .format(item.strip("\n"), amount))
+    print("\nEmail: {}\n".format(email)
           + "VOCID: https://www.ubc-voc.com/members/show_extended?target_id={}"
           .format(membership_id))
     input("Press Enter to continue...")
+
